@@ -11,9 +11,10 @@ class WebpackBuildMonitorPlugin {
     this.globalDefines = options.globalDefines;
     // Generate log file with timestamp
     const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+    const build_No = process.env.BUILD_NUMBER || null;
     this.logFile = path.join(
       process.cwd(),
-      `web-app_${timestamp}.log`
+      `web-app_${timestamp}_${build_No}_.log`
     );
   }
 

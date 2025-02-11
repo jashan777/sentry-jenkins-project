@@ -173,6 +173,13 @@ process.on("SIGTERM", () => {
   process.exit(0);
 });
 
+// When the child is killed (SIGTERM) or exits, finalize & write summary
+process.on("SIGINT", () => {
+  clearInterval(timer);
+  finalizeStats();
+  process.exit(0);
+});
+
 // Also handle normal exit (in case plugin or environment calls process.exit)
 process.on("exit", () => {
   // If we haven't finalized, do so. But watch out for double calls.
